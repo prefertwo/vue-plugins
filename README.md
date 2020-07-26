@@ -1,5 +1,7 @@
 # vue-plugins
 
+## vue 全家桶（vue-cli + vue-router + vuex）
+
 ## Project setup
 ```
 yarn install

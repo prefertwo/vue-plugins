@@ -8,8 +8,8 @@
         <el-form-item label="" prop="account">
           <el-input v-model="form.account" placeholder="用户名"></el-input>
         </el-form-item>
-        <el-form-item label="" prop="pass">
-          <el-input v-model="form.pass" placeholder="密码" type="password"></el-input>
+        <el-form-item label="" prop="password">
+          <el-input v-model="form.password" placeholder="密码" type="password"></el-input>
         </el-form-item>
         
         <el-form-item>
@@ -26,22 +26,23 @@
 <script>
 
 import {Notification} from "element-ui";
+import {GetUserInfo} from '@/api/service'
 
 export default {
   data() {
     return {
       form: {
-        account: '',
-        pass: ''
+        account: "guo@zheng.com",
+        password: "111111"
       },
       rules: {
         account: [
           { required: true, message: '请输入用户名', trigger: 'blur' },
-          { min: 6, max: 12, message: '用户名为6-12个字符', trigger: 'blur' }
+          // { min: 6, max: 12, message: '用户名为6-12个字符', trigger: 'blur' }
         ],
-        pass: [
+        password: [
           { required: true, message: '请输入登陆密码', trigger: 'blur' },
-          { min: 8, max: 20, message: '密码需设置为8-20位', trigger: 'change'}
+          // { min: 8, max: 20, message: '密码需设置为8-20位', trigger: 'change'}
         ]
       },
       showLogin: false
@@ -53,11 +54,12 @@ export default {
   },
 
   methods: {
-    onSubmit() {
-      this.$refs['form'].validate((valid) => {
-        // valid 是一个布尔值
+    async onSubmit() {
+      this.$refs['form'].validate(async (valid) => { // valid 是一个布尔值
         if (valid) {
-          this.$router.push('/manager')
+          // this.$router.push('/manager')
+          const res = await GetUserInfo(this.form)
+          console.log(res);
         } else {
           console.log(valid);
           Notification({
