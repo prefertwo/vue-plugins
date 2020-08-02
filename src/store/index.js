@@ -23,7 +23,7 @@ const actions = {
   async getUserInfo({commit}) {
     try{
 			const res = await GetUserInfo()
-			if (res.status == 1) {
+			if (res.status == 1008) {
 				commit('saveUserInfo', res.data);
 			}else{
 				throw new Error(res.type)

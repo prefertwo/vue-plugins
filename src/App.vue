@@ -20,7 +20,8 @@ export default {
 </script>
 
 <style>
-@import './style/common.less'
+@import './style/common.less';
+@import './style/public.less';
 
 /* #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

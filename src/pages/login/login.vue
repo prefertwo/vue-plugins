@@ -27,6 +27,7 @@
 
 import {Notification} from "element-ui";
 import {GetUserInfo} from '@/api/service'
+import Common from '../../utils/commonData'
 
 export default {
   data() {
@@ -57,9 +58,10 @@ export default {
     async onSubmit() {
       this.$refs['form'].validate(async (valid) => { // valid 是一个布尔值
         if (valid) {
-          // this.$router.push('/manager')
           const res = await GetUserInfo(this.form)
-          console.log(res);
+          if(res.code === Common.status.success) {
+            this.$router.replace('/manager/chart')
+          }
         } else {
           console.log(valid);
           Notification({

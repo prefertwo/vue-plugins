@@ -21,11 +21,12 @@ const get = (url, data) => {
 }
 
 instance.interceptors.response.use(response => {
+  // response 包括 config、data、headers、request、status、statusText
   const {data} = response
-  if(data.code === 1014) {
-    // token 失效
-    window.location.href = `${window.location.origin}/user/login`;
-  }
+  // if(data.code === 1014) {
+  //   // token 失效
+  //   window.location.href = `${window.location.origin}/user/login`;
+  // }
   if(data.code !== 1008) {
     Notification({
       title: '提示',
